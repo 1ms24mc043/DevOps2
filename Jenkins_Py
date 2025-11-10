@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    tools {
+        python 'Python3' // Must match the Python name configured in Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone your GitHub repo
+                git branch: 'main', url: 'https://github.com/1ms24mc043/DevOps2'
+            }
+        }
+
+        stage('Run Python Script') {
+            steps {
+                echo "Running Python Program..."
+                sh 'python3 HelloWorld.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Python script executed successfully!'
+        }
+        failure {
+            echo 'Build Failed'
+        }
+    }
+}
