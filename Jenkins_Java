@@ -2,7 +2,7 @@ pipeline {
 	agent any
 
 	tools {
-		jdk 'jdk21" //Must match the name configured in jenkins
+		jdk 'jdk21' //Must match the name configured in jenkins
 	}
 
 	stages { 
