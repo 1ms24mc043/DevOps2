@@ -1,0 +1,39 @@
+pipeline {
+	agent any
+
+	tools {
+		jdk 'jdk21" //Must match the name configured in jenkins
+	}
+
+	stages { 
+		stage('Checkout') {
+			steps {
+				// Clone your GitHun repo
+				git branch: 'main', url: 'https://github.com/1ms24mc043/DevOps2'
+			}
+		}
+
+		stage('Compile') {
+			steps {
+				echo "Compiling Java Program..."
+				sh 'javac HelloWorld.java'
+			}
+		}
+
+		stage('Run') {
+			steps {
+				echo "Running Java Program..."
+				sh 'java HellowWorld'
+			}
+		}
+	}
+
+	post {
+		success {
+			echo 'Build and execution successful!'
+		}
+		failure {
+			echo 'Build Failed'
+		}
+	}
+}
